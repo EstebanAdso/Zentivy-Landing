@@ -18,6 +18,13 @@ Zentivy ayuda a tiendas, mini markets, distribuidoras y negocios pequeños en Co
 - Préstamos y abonos
 - Agente de IA por WhatsApp / Messenger / Instagram (add-on de pago)
 
+## Importante (alcance)
+Zentivy es una herramienta de organizacion y gestion interna. NO es software
+contable y NO emite facturacion electronica ante la DIAN. Los documentos que
+genera (facturas, cuentas de cobro, recibos) son comprobantes de control
+interno del negocio. El cumplimiento de obligaciones tributarias es
+responsabilidad de cada empresa.
+
 ## Planes
 - Gratis: para empezar
 - Básico: ~$40.000 COP/mes

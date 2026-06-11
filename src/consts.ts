@@ -24,7 +24,7 @@ export const KEYWORDS = [
   'programa de facturación para PYMES',
   'sistema POS para tiendas',
   'control de inventario en la nube',
-  'facturación electrónica Colombia',
+  'programa de cuentas de cobro para negocios',
   'software para mini market',
   'agente de WhatsApp con IA para ventas',
 ];
