@@ -1,0 +1,113 @@
+---
+import { SITE } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Ruta de la imagen OG (en /public). Default: og-default.png */
+  image?: string;
+  /** noindex para páginas que no deben rankear (gracias, 404…). */
+  noindex?: boolean;
+  /** JSON-LD adicional específico de la página. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = SITE.defaultTitle,
+  description = SITE.defaultDescription,
+  image = '/og-default.png',
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+// Canonical absoluto a partir del dominio del sitio + ruta actual.
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL(image, SITE.url).href;
+
+// JSON-LD base: Organization + SoftwareApplication. Mejora cómo Google
+// entiende la marca y el producto (rich results).
+const baseJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+    logo: new URL('/favicon.svg', SITE.url).href,
+    email: SITE.email,
+    areaServed: { '@type': 'Country', name: 'Colombia' },
+    sameAs: [],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: SITE.name,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    description: SITE.defaultDescription,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'COP',
+      description: 'Plan gratuito para empezar',
+    },
+    areaServed: { '@type': 'Country', name: 'Colombia' },
+  },
+];
+
+const allJsonLd = jsonLd
+  ? [...baseJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])]
+  : baseJsonLd;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Localización -->
+    <meta name="language" content="Spanish" />
+    <meta name="geo.region" content="CO" />
+    <meta name="geo.placename" content="Colombia" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Iconos y tema -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content={SITE.themeColor} />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(allJsonLd)}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

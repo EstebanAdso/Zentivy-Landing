@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+
+const actualizado = '9 de junio de 2026';
+---
+
+<Layout
+  title="Términos del servicio — Zentivy"
+  description="Condiciones de uso de la plataforma Zentivy de inventario, facturación y agente de WhatsApp para negocios en Colombia."
+>
+  <Header />
+
+  <main class="mx-auto max-w-3xl px-5 py-16">
+    <h1 class="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+      Términos del servicio
+    </h1>
+    <p class="mt-3 text-sm text-slate-500">Última actualización: {actualizado}</p>
+
+    <div class="mt-10 space-y-8 text-slate-700">
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">1. Aceptación</h2>
+        <p class="mt-3 leading-relaxed">
+          Al crear una cuenta y usar Zentivy aceptas estos términos. Si no estás de
+          acuerdo, no uses el servicio.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">2. El servicio</h2>
+        <p class="mt-3 leading-relaxed">
+          Zentivy es una plataforma en la nube de inventario, facturación y ventas.
+          El agente de WhatsApp con IA es un servicio adicional opcional que se
+          contrata aparte. Podemos mejorar o cambiar funciones para optimizar el
+          producto.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">3. Tu cuenta</h2>
+        <p class="mt-3 leading-relaxed">
+          Eres responsable de la actividad de tu cuenta y de la veracidad de los
+          datos que ingresas. Debes mantener seguras tus credenciales de acceso.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">4. Planes y pagos</h2>
+        <p class="mt-3 leading-relaxed">
+          Ofrecemos un plan gratuito y planes pagos. Los precios se publican en
+          pesos colombianos. El add-on del agente de IA se cobra por separado del
+          plan. Los detalles de cobro se acuerdan al contratar.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">5. Uso aceptable</h2>
+        <p class="mt-3 leading-relaxed">
+          No puedes usar Zentivy para actividades ilegales, para enviar spam, ni
+          para vulnerar la seguridad de la plataforma o de terceros. El uso del
+          agente debe respetar las políticas de WhatsApp y Meta.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">6. Disponibilidad</h2>
+        <p class="mt-3 leading-relaxed">
+          Procuramos la mayor disponibilidad posible, pero el servicio se ofrece
+          "tal cual" y puede tener interrupciones por mantenimiento o causas fuera
+          de nuestro control.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">7. Limitación de responsabilidad</h2>
+        <p class="mt-3 leading-relaxed">
+          Zentivy es una herramienta de apoyo a tu negocio. No nos hacemos
+          responsables por decisiones comerciales, pérdidas indirectas o por el
+          mal uso de la plataforma.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-slate-900">8. Contacto</h2>
+        <p class="mt-3 leading-relaxed">
+          Para cualquier duda sobre estos términos, escríbenos a
+          <a class="font-semibold text-brand" href={`mailto:${SITE.email}`}
+            >{SITE.email}</a
+          >.
+        </p>
+      </section>
+    </div>
+
+    <a
+      href="/"
+      class="mt-12 inline-flex text-sm font-semibold text-brand hover:underline"
+      >← Volver al inicio</a
+    >
+  </main>
+
+  <Footer />
+</Layout>

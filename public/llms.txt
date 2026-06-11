@@ -1,0 +1,35 @@
+# Zentivy
+
+> Software en la nube de inventario, facturación y ventas para PYMES en Colombia. Incluye un agente de IA opcional que atiende a los clientes por WhatsApp, Messenger e Instagram.
+
+Zentivy ayuda a tiendas, mini markets, distribuidoras y negocios pequeños en Colombia a controlar su stock con costeo FIFO, facturar en segundos y vender más. El agente de IA (servicio adicional) responde automáticamente a los clientes con base en el catálogo y el inventario del negocio.
+
+## Para quién es
+- Tiendas de barrio, mini markets y autoservicios
+- Distribuidoras y mayoristas
+- Locales y PYMES que venden por WhatsApp
+- Negocios que quieren control de inventario y facturación sin complicarse
+
+## Funciones principales
+- Control de inventario en la nube con costeo FIFO por lotes
+- Facturación y ventas rápidas (POS)
+- Gestión de clientes, proveedores, categorías y pedidos
+- Modelos con variantes (tallas, colores, etc.)
+- Préstamos y abonos
+- Agente de IA por WhatsApp / Messenger / Instagram (add-on de pago)
+
+## Planes
+- Gratis: para empezar
+- Básico: ~$40.000 COP/mes
+- Pro: ~$119.000 COP/mes
+- Agente de IA: se contrata por separado del plan
+
+## Enlaces
+- Sitio web: https://zentivy.com
+- Política de privacidad: https://zentivy.com/politica-privacidad
+- Términos del servicio: https://zentivy.com/terminos
+- Contacto WhatsApp: https://wa.me/573242264795
+- Correo: hola@zentivy.com
+
+## Ubicación
+Operado desde Pasto, Colombia. Atiende a negocios de toda Colombia.
