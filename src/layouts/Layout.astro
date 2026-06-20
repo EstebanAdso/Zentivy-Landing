@@ -33,7 +33,7 @@ const baseJsonLd = [
     '@type': 'Organization',
     name: SITE.name,
     url: SITE.url,
-    logo: new URL('/favicon.svg', SITE.url).href,
+    logo: new URL('/logo-zentivy.png', SITE.url).href,
     email: SITE.email,
     areaServed: { '@type': 'Country', name: 'Colombia' },
     sameAs: [],
@@ -103,7 +103,7 @@ const allJsonLd = jsonLd
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Iconos y tema -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="theme-color" content={SITE.themeColor} />
 
     <!-- Sitemap -->
