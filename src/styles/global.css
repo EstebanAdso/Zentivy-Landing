@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
-/* Tokens de marca Zentivy (consistentes con la app React). */
+/* Tokens de marca Zentivy (consistentes con la app React).
+   Cambiar el color aquí afecta todo el landing. */
 @theme {
-  --color-brand: #4488ee;
-  --color-brand-dark: #2f6fd0;
-  --color-agent: #8b5cf6;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  --color-brand: #820ad1; /* morado Nubank */
+  --color-brand-dark: #6b0aac; /* hover / variante oscura */
+  --color-brand-light: #a855f7; /* acento claro */
+  --color-agent: #8b5cf6; /* acento del agente IA */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 html {
@@ -16,8 +18,14 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: #0f172a;
+  color: #1e293b;
   background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-brand) 22%, transparent);
 }
 
 /* Respeta usuarios que prefieren menos movimiento. */
