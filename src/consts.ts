@@ -30,8 +30,8 @@ export const KEYWORDS = [
 ];
 
 export const NAV = [
-  { href: '#funciones', label: 'Funciones' },
-  { href: '#agente', label: 'Agente IA' },
-  { href: '#precios', label: 'Precios' },
-  { href: '#faq', label: 'Preguntas' },
+  { href: '/', label: 'Inicio' },
+  { href: '/funciones', label: 'Funciones' },
+  { href: '/agente-ia', label: 'Agente IA' },
+  { href: '/precios', label: 'Precios' },
 ];

@@ -4,39 +4,123 @@ import { SITE, NAV } from '../consts';
 
 <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/85 backdrop-blur">
   <nav
-    class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5"
+    class="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-5"
     aria-label="Principal"
   >
-    <a href="/" class="flex items-center" aria-label="Zentivy inicio">
-      <img src="/logo-zentivy.png" alt="Zentivy" class="h-8 w-auto" />
-    </a>
+    <!-- Logo -->
+    <div class="flex items-center justify-start flex-shrink-0">
+      <a href="/" class="flex items-center" aria-label="Zentivy inicio">
+        <img src="/zentivy-light.svg" alt="Zentivy" class="h-8 w-auto" />
+      </a>
+    </div>
 
-    <ul class="hidden items-center gap-7 md:flex">
+    <!-- Centered Links -->
+    <div class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center justify-center z-20">
+      <ul class="flex items-center gap-7">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm font-semibold text-slate-600 transition-colors hover:text-brand"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-end gap-3 z-10 flex-shrink-0">
+      <a
+        href={SITE.appUrl}
+        class="hidden text-sm font-semibold text-brand transition-colors hover:text-brand-dark sm:block"
+        >Iniciar sesión</a
+      >
+      <a
+        href={SITE.appUrl}
+        class="rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-dark whitespace-nowrap flex-shrink-0"
+        >Empezar gratis</a
+      >
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="group flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-200 text-slate-600 transition-colors hover:bg-slate-50 md:hidden focus:outline-none"
+        aria-label="Abrir menú"
+      >
+        <span class="h-0.5 w-5 rounded bg-slate-600 transition-all duration-300 group-[.open]:translate-y-2 group-[.open]:rotate-45"></span>
+        <span class="h-0.5 w-5 rounded bg-slate-600 transition-all duration-300 group-[.open]:opacity-0"></span>
+        <span class="h-0.5 w-5 rounded bg-slate-600 transition-all duration-300 group-[.open]:-translate-y-2 group-[.open]:-rotate-45"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    id="mobile-menu-dropdown"
+    class="pointer-events-none absolute left-0 right-0 top-16 z-40 border-b border-slate-100 bg-white px-5 py-6 shadow-lg transition-all duration-300 transform -translate-y-4 opacity-0 md:hidden"
+  >
+    <ul class="flex flex-col items-center justify-center space-y-4">
       {
         NAV.map((item) => (
           <li>
             <a
               href={item.href}
-              class="text-sm font-semibold text-slate-600 transition-colors hover:text-brand"
+              class="block text-center text-base font-bold text-slate-700 hover:text-brand"
             >
               {item.label}
             </a>
           </li>
         ))
       }
+      <li>
+        <a
+          href={SITE.appUrl}
+          class="block text-center text-base font-bold text-brand hover:text-brand-dark"
+        >
+          Iniciar sesión
+        </a>
+      </li>
     </ul>
-
-    <div class="flex items-center gap-3">
-      <a
-        href={SITE.appUrl}
-        class="hidden text-sm font-semibold text-slate-600 transition-colors hover:text-brand sm:block"
-        >Iniciar sesión</a
-      >
-      <a
-        href={SITE.appUrl}
-        class="rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-brand-dark"
-        >Empezar gratis</a
-      >
-    </div>
-  </nav>
+  </div>
 </header>
+
+<script>
+  const initMobileMenu = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const dropdown = document.getElementById('mobile-menu-dropdown');
+
+    if (!btn || !dropdown) return;
+
+    const toggleMenu = (open) => {
+      if (open) {
+        btn.classList.add('open');
+        dropdown.classList.add('pointer-events-auto', 'translate-y-0', 'opacity-100');
+        dropdown.classList.remove('pointer-events-none', '-translate-y-4', 'opacity-0');
+      } else {
+        btn.classList.remove('open');
+        dropdown.classList.remove('pointer-events-auto', 'translate-y-0', 'opacity-100');
+        dropdown.classList.add('pointer-events-none', '-translate-y-4', 'opacity-0');
+      }
+    };
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.classList.contains('open');
+      toggleMenu(!isOpen);
+    });
+
+    // Close when a link is clicked
+    const links = dropdown.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMenu(false);
+      });
+    });
+  };
+
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

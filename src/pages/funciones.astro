@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+
+const seoTitle = 'Funciones de Zentivy — Software POS, Inventario y Facturación';
+const seoDesc = 'Conoce todas las herramientas de Zentivy: inventario FIFO, facturación POS, gestión de cartera, reportes de ventas, estadísticas multi-sede y más.';
+
+const modulos = [
+  {
+    titulo: 'Ventas y Facturación POS',
+    icon: '⚡',
+    items: [
+      'Factura de venta rápida en computador o celular.',
+      'Creación de cotizaciones formales para tus clientes.',
+      'Envío rápido de cotizaciones por correo electrónico directamente desde el sistema.',
+      'Impresión directa en formato POS (58mm) o descarga en PDF.',
+      'Soporte para préstamos (fiado), abonos y apartados.',
+      'Métodos de pago divididos (efectivo, Nequi, tarjeta, etc.) en una misma venta.'
+    ]
+  },
+  {
+    titulo: 'Inventarios y Stock Real',
+    icon: '📦',
+    items: [
+      'Método de costeo FIFO para saber el margen real por lote.',
+      'Alertas automáticas de stock mínimo para evitar quedar sin mercancía.',
+      'Gestión de variantes de producto (talla, color, etc.) con stock individual.',
+      'Carga de inventario inicial y registro de compras por lotes.'
+    ]
+  },
+  {
+    titulo: 'Gestión de Clientes y Cartera',
+    icon: '👥',
+    items: [
+      'Base de datos centralizada de clientes con historial de compras.',
+      'Cuentas por cobrar (cartera) detalladas con registro de deudas y abonos.',
+      'Envío de cuentas de cobro detalladas por correo electrónico con un solo clic.',
+      'Estadísticas de compras por cliente para identificar a tus mejores compradores.',
+      'Activos de negocio para tener visibilidad de tus recursos y cuentas.'
+    ]
+  },
+  {
+    titulo: 'Multi-Sede y Multi-Usuario',
+    icon: '🏢',
+    items: [
+      'Controla múltiples puntos de venta (sedes) desde una sola cuenta.',
+      'Estadísticas y reportes de ventas filtrados por sede o globales.',
+      'Usuarios con roles y permisos: Dueño, Administrador y Vendedor.',
+      'Los empleados no ven costos, márgenes de ganancia ni estadísticas generales.'
+    ]
+  },
+  {
+    titulo: 'Estadísticas e Informes Avanzados',
+    icon: '📈',
+    items: [
+      'Módulo visual con las ventas del día y gráficos de ingresos del año.',
+      'Productos más vendidos con porcentaje de participación en tus ganancias.',
+      'Descarga de reportes de ventas mensuales listos para contabilidad.',
+      'Indicadores de rendimiento de tus vendedores y sedes en tiempo real.'
+    ]
+  },
+  {
+    titulo: 'Códigos de Barras y Proveedores',
+    icon: '🏷️',
+    items: [
+      'Directorio de proveedores para guardar datos de contacto y facturas de compra.',
+      'Escáner integrado compatible con pistola lectora o la cámara de tu celular.',
+      'Generador y diseñador de códigos de barras listo para impresión.',
+      'Asignación rápida de códigos existentes a tus productos o variantes.'
+    ]
+  }
+];
+---
+
+<Layout title={seoTitle} description={seoDesc}>
+  <Header />
+
+  <main class="bg-slate-50">
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-brand/10 via-slate-50 to-slate-50 py-12 md:py-20 text-center min-h-[calc(100dvh-4rem)] md:min-h-0 flex flex-col justify-center items-center md:block">
+      <div class="absolute inset-0 z-0 opacity-30">
+        <div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-brand-light blur-3xl"></div>
+        <div class="absolute top-20 right-10 h-80 w-80 rounded-full bg-brand-light blur-3xl"></div>
+      </div>
+      <div class="relative z-10 mx-auto max-w-4xl px-5 reveal">
+        <span class="rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand">Poderoso y Simple</span>
+        <h1 class="mt-6 text-4xl font-black leading-tight tracking-tight text-slate-900 md:text-5xl lg:text-6xl">
+          Todo lo que necesitas para <span class="bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">administrar tu negocio</span>
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-slate-600 md:text-xl">
+          Olvídate de las hojas de cálculo y los cuadernos. Zentivy integra facturación, inventario estricto, gestión de cartera, múltiples sedes y reportes en una plataforma rápida en la nube.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href={SITE.appUrl} class="w-full rounded-xl bg-brand px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand/20 transition-all hover:-translate-y-0.5 hover:bg-brand-dark sm:w-auto">
+            Probar gratis por 15 días
+          </a>
+          <a href="/precios" class="w-full rounded-xl border-2 border-slate-200 bg-white px-8 py-4 text-base font-bold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-brand hover:text-brand sm:w-auto">
+            Ver planes de precios
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETALLES DE MODULOS -->
+    <section class="mx-auto max-w-6xl px-5 py-12">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {modulos.map((mod, i) => (
+          <article class={`flex flex-col rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all hover:shadow-md reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`}>
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-brand/10 text-2xl">
+              {mod.icon}
+            </div>
+            <h2 class="mt-5 text-xl font-bold text-slate-900">{mod.titulo}</h2>
+            <ul class="mt-4 flex-1 space-y-3">
+              {mod.items.map((item) => (
+                <li class="flex items-start gap-2.5 text-sm text-slate-600">
+                  <span class="mt-1 text-xs text-brand">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- DEEP DIVE SECTIONS (Aesthetics & SEO rich) -->
+    <section class="border-t border-slate-200 bg-white py-20">
+      <div class="mx-auto max-w-6xl px-5">
+        <div class="mx-auto max-w-3xl text-center reveal">
+          <h2 class="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+            Control de inventario profesional hecho fácil
+          </h2>
+          <p class="mt-4 text-lg text-slate-600">
+            Conoce cómo Zentivy te da visibilidad completa de tu capital y utilidades.
+          </p>
+        </div>
+
+        <!-- Fila 1 -->
+        <div class="mt-16 grid items-center gap-12 md:grid-cols-2">
+          <div class="reveal">
+            <div class="inline-block rounded-lg bg-emerald-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-600">Costeo FIFO (PEPS)</div>
+            <h3 class="mt-4 text-2xl font-bold text-slate-900">Sabes cuánto ganas en cada venta</h3>
+            <p class="mt-4 text-slate-600">
+              A diferencia de sistemas sencillos que solo promedian precios, Zentivy registra las compras por lotes y descuenta la mercancía en orden de llegada (First-In, First-Out). Esto te permite:
+            </p>
+            <ul class="mt-5 space-y-3 text-slate-600">
+              <li class="flex items-center gap-3">
+                <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-600">1</span>
+                <span>Conocer tu utilidad real ajustada a la inflación de costos.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-600">2</span>
+                <span>Saber qué lotes de proveedor tienen mayor rentabilidad.</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-600">3</span>
+                <span>Mantener tu inventario valorizado correctamente ante cualquier auditoría.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-3xl bg-slate-50 p-8 shadow-inner border border-slate-100 reveal reveal-delay-1">
+            <div class="space-y-4">
+              <div class="rounded-xl bg-white p-4 shadow-sm border border-slate-200/60">
+                <div class="flex justify-between text-xs text-slate-400 font-semibold uppercase">Lote 01 (Ene 10)</div>
+                <div class="mt-2 flex justify-between items-baseline">
+                  <span class="text-sm font-bold text-slate-700">100 unidades a $15.000</span>
+                  <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Vendido</span>
+                </div>
+              </div>
+              <div class="rounded-xl bg-white p-4 shadow-sm border border-slate-200/60">
+                <div class="flex justify-between text-xs text-slate-400 font-semibold uppercase">Lote 02 (Feb 05)</div>
+                <div class="mt-2 flex justify-between items-baseline">
+                  <span class="text-sm font-bold text-slate-700">150 unidades a $17.500</span>
+                  <span class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded">En venta (FIFO)</span>
+                </div>
+              </div>
+              <div class="rounded-xl bg-white p-4 shadow-sm border border-slate-200/60">
+                <div class="flex justify-between text-xs text-slate-400 font-semibold uppercase">Lote 03 (Mar 12)</div>
+                <div class="mt-2 flex justify-between items-baseline">
+                  <span class="text-sm font-bold text-slate-700">200 unidades a $19.000</span>
+                  <span class="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">En espera</span>
+                </div>
+              </div>
+            </div>
+            <p class="mt-4 text-center text-xs text-slate-400 font-medium">El sistema vende primero el lote más antiguo para proteger tu margen.</p>
+          </div>
+        </div>
+
+        <!-- Fila 2 -->
+        <div class="mt-24 grid items-center gap-12 md:grid-cols-2 md:grid-flow-col-dense">
+          <div class="md:col-start-2 reveal">
+            <div class="inline-block rounded-lg bg-brand/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand">Estadísticas por Sede</div>
+            <h3 class="mt-4 text-2xl font-bold text-slate-900">Controla varias sedes desde un solo lugar</h3>
+            <p class="mt-4 text-slate-600">
+              ¿Tienes un local en el norte y otro en el sur? Con Zentivy administras el inventario y las ventas de cada sede de forma independiente pero consolidada en un solo panel de mando:
+            </p>
+            <ul class="mt-5 space-y-3 text-slate-600">
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-bold">✓</span>
+                <span>Asigna productos a sedes específicas o mantén un catálogo unificado.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-bold">✓</span>
+                <span>Monitorea las ventas diarias de cada local por separado o sumadas.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-brand font-bold">✓</span>
+                <span>Traslada mercancía entre sedes registrando la salida y la entrada.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-3xl bg-slate-900 p-8 shadow-2xl md:col-start-1 text-white relative overflow-hidden reveal reveal-delay-1">
+            <div class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-brand/20 blur-2xl"></div>
+            <h4 class="text-sm font-bold text-slate-400">Resumen Multisede</h4>
+            <div class="mt-6 space-y-4">
+              <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                <div>
+                  <div class="text-sm font-bold text-white">Sede Centro</div>
+                  <div class="text-xs text-slate-400">45 ventas hoy</div>
+                </div>
+                <div class="text-right font-black text-brand-light">$1.850.000 COP</div>
+              </div>
+              <div class="flex justify-between items-center border-b border-white/10 pb-2">
+                <div>
+                  <div class="text-sm font-bold text-white">Sede Norte</div>
+                  <div class="text-xs text-slate-400">32 ventas hoy</div>
+                </div>
+                <div class="text-right font-black text-brand-light">$1.290.000 COP</div>
+              </div>
+              <div class="flex justify-between items-center pb-2">
+                <div>
+                  <div class="text-sm font-bold text-white">Total Consolidado</div>
+                  <div class="text-xs text-slate-300">77 ventas totales</div>
+                </div>
+                <div class="text-right font-black text-emerald-400">$3.140.000 COP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="mx-auto max-w-6xl px-5 py-20">
+      <div class="rounded-3xl border border-brand/20 bg-gradient-to-br from-brand/5 via-white to-white p-8 md:p-16 text-center relative overflow-hidden shadow-lg reveal">
+        <div class="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-brand-light/10 blur-3xl pointer-events-none"></div>
+        <h2 class="text-3xl font-black tracking-tight md:text-4xl text-slate-900 relative z-10">¿Listo para ordenar las finanzas de tu negocio?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg text-slate-600 relative z-10">
+          Crea tu cuenta hoy y prueba todas las funciones avanzadas gratis por 15 días. Sin contratos de permanencia.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row relative z-10">
+          <a href={SITE.appUrl} class="w-full rounded-xl bg-brand px-8 py-4 text-base font-bold text-white shadow-md transition-all hover:bg-brand-dark hover:-translate-y-0.5 sm:w-auto">
+            Empezar gratis
+          </a>
+          <a href={SITE.whatsapp} rel="nofollow" class="w-full rounded-xl border-2 border-slate-200 bg-white px-8 py-4 text-base font-bold text-slate-700 transition-all hover:bg-slate-50 hover:border-brand hover:text-brand hover:-translate-y-0.5 sm:w-auto">
+            Hablemos por WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

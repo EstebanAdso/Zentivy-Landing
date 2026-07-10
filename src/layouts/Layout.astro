@@ -33,7 +33,7 @@ const baseJsonLd = [
     '@type': 'Organization',
     name: SITE.name,
     url: SITE.url,
-    logo: new URL('/logo-zentivy.png', SITE.url).href,
+    logo: new URL('/zentivy-light.svg', SITE.url).href,
     email: SITE.email,
     areaServed: { '@type': 'Country', name: 'Colombia' },
     sameAs: [],
@@ -103,7 +103,7 @@ const allJsonLd = jsonLd
     <meta name="twitter:image" content={ogImage} />
 
     <!-- Iconos y tema -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/zentivy-icon.svg" />
     <meta name="theme-color" content={SITE.themeColor} />
 
     <!-- Sitemap -->
@@ -117,5 +117,35 @@ const allJsonLd = jsonLd
   </head>
   <body>
     <slot />
+
+    <script>
+      // Observador para animaciones al hacer scroll (Scroll Reveal)
+      const observerOptions = {
+        threshold: 0.05,
+        rootMargin: '0px 0px -60px 0px'
+      };
+
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Dejar de observar una vez que se activa
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Registrar elementos
+      const registerReveals = () => {
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el) => revealObserver.observe(el));
+      };
+
+      // Ejecutar al cargar la página
+      registerReveals();
+
+      // En caso de usar View Transitions de Astro, volver a registrar
+      document.addEventListener('astro:after-swap', registerReveals);
+    </script>
   </body>
 </html>

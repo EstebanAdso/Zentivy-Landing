@@ -12,12 +12,12 @@ const features = [
   },
   {
     titulo: 'Facturación en segundos',
-    desc: 'Factura de venta, préstamos (fiado) y apartados. Imprime en POS 58mm o PDF. Pagos divididos entre varias cuentas de recaudo.',
+    desc: 'Factura de venta, creación de cotizaciones y apartados. Envía cotizaciones por email y descarga en PDF o POS 58mm. Pagos divididos.',
     icon: 'receipt',
   },
   {
     titulo: 'Clientes y cartera',
-    desc: 'Historial de cada cliente, deudas, abonos y recordatorios. Cobra a tiempo y lleva el control de quién te debe.',
+    desc: 'Historial de cada cliente, cuentas de cobro con envío por email, deudas, abonos y recordatorios. Cobra a tiempo y lleva el control.',
     icon: 'users',
   },
   {
@@ -115,7 +115,7 @@ const faqJsonLd = {
         class="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand/5 to-white"
       >
       </div>
-      <div class="relative mx-auto max-w-6xl px-5 py-20 text-center md:py-28">
+      <div class="relative mx-auto max-w-6xl px-5 py-20 text-center md:py-28 reveal">
         <p
           class="mx-auto mb-4 w-fit rounded-full border border-brand/20 bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-brand"
         >
@@ -158,7 +158,7 @@ const faqJsonLd = {
     <!-- TRUST STRIP -->
     <section class="border-y border-slate-100 bg-white">
       <div
-        class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-10 text-center md:grid-cols-4"
+        class="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-10 text-center md:grid-cols-4 reveal"
       >
         {
           [
@@ -178,7 +178,7 @@ const faqJsonLd = {
 
     <!-- FUNCIONES -->
     <section id="funciones" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-20">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <h2 class="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
           Todo lo que tu negocio necesita
         </h2>
@@ -189,8 +189,8 @@ const faqJsonLd = {
 
       <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
-          features.map((f) => (
-            <article class="rounded-2xl border border-slate-100 bg-white p-7 transition-shadow hover:shadow-lg">
+          features.map((f, i) => (
+            <article class={`rounded-2xl border border-slate-100 bg-white p-7 transition-shadow hover:shadow-lg reveal ${i % 3 === 1 ? 'reveal-delay-1' : i % 3 === 2 ? 'reveal-delay-2' : ''}`}>
               <div class="grid h-11 w-11 place-items-center rounded-xl bg-brand/10 text-brand">
                 <span class="text-xl font-black">★</span>
               </div>
@@ -203,37 +203,42 @@ const faqJsonLd = {
     </section>
 
     <!-- AGENTE IA -->
-    <section id="agente" class="scroll-mt-20 bg-slate-900">
+    <section id="agente" class="scroll-mt-20 relative overflow-hidden bg-slate-50 border-t border-b border-slate-100">
+      <div class="absolute inset-0 z-0 opacity-40 pointer-events-none">
+        <div class="absolute top-[-20%] left-[-10%] h-[500px] w-[500px] rounded-full bg-brand-light/10 blur-[130px]"></div>
+        <div class="absolute bottom-[10%] right-[-10%] h-[500px] w-[500px] rounded-full bg-brand-light/20 blur-[130px]"></div>
+      </div>
       <div
-        class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2"
+        class="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2"
       >
-        <div>
+        <div class="reveal">
           <p
-            class="w-fit rounded-full bg-violet-500/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-violet-300"
+            class="w-fit rounded-full bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-brand"
           >
             Servicio adicional
           </p>
           <h2
-            class="mt-4 text-3xl font-black tracking-tight text-white md:text-4xl"
+            class="mt-4 text-3xl font-black tracking-tight text-slate-900 md:text-4xl"
           >
             Un agente de IA que atiende tu WhatsApp por ti
           </h2>
-          <p class="mt-5 text-lg leading-relaxed text-slate-300">
+          <p class="mt-5 text-lg leading-relaxed text-slate-600">
             Conecta el WhatsApp de tu negocio y deja que la inteligencia
             artificial responda a tus clientes: consulta tu inventario, verifica
             stock, comparte precios y orienta la compra. Tú decides cuándo
             activarlo.
           </p>
-          <ul class="mt-6 space-y-3 text-slate-200">
+          <ul class="mt-6 space-y-3 text-slate-700">
             {
               [
-                'Responde 24/7 sin que muevas un dedo',
-                'Consulta tu catálogo y stock en tiempo real',
-                'WhatsApp, Messenger e Instagram',
-                'Se vende aparte: solo lo pagas si lo quieres',
+                'Responde 24/7 sin que muevas un dedo.',
+                'Consulta tu catálogo y stock en tiempo real.',
+                'Capacidad multimodal: analiza imágenes (como comprobantes o fotos de productos) y transcribe/entiende notas de voz.',
+                'WhatsApp, Messenger e Instagram.',
+                'Se vende aparte: solo lo pagas si lo quieres.',
               ].map((t) => (
                 <li class="flex items-start gap-3">
-                  <span class="mt-1 text-violet-400">●</span>
+                  <span class="mt-1 text-brand-light">●</span>
                   <span>{t}</span>
                 </li>
               ))
@@ -242,40 +247,157 @@ const faqJsonLd = {
           <a
             href={SITE.whatsapp}
             rel="nofollow"
-            class="mt-8 inline-flex rounded-xl bg-violet-500 px-6 py-3 text-base font-bold text-white transition-colors hover:bg-violet-600"
+            class="mt-8 inline-flex rounded-xl bg-brand px-6 py-3 text-base font-bold text-white transition-colors hover:bg-brand-dark"
             >Quiero el agente IA</a
           >
         </div>
 
-        <div
-          class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl"
-        >
-          <div class="space-y-3">
-            <div class="max-w-[80%] rounded-2xl rounded-tl-sm bg-white/10 px-4 py-2.5 text-sm text-slate-100">
-              Hola, ¿tienen mouse inalámbrico?
+        <div class="flex justify-center reveal w-full relative z-10">
+          <!-- Mockup Celular Realista -->
+          <div class="relative w-full max-w-[320px] h-[580px] bg-slate-950 rounded-[44px] p-3 shadow-2xl border-[10px] border-slate-800 ring-4 ring-slate-900/5 overflow-hidden flex flex-col text-left select-none">
+            <!-- Dynamic Island / Parlante de pantalla -->
+            <div class="absolute top-4 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-950 rounded-full z-30 flex items-center justify-center border border-white/5 shadow-inner">
+              <div class="w-10 h-1 bg-white/10 rounded-full"></div>
             </div>
-            <div class="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-violet-500 px-4 py-2.5 text-sm text-white">
-              ¡Hola! 😊 Sí, tenemos el Mouse Logitech M170 a $45.000. Tenemos 12
-              en stock. ¿Te lo aparto?
-            </div>
-            <div class="max-w-[80%] rounded-2xl rounded-tl-sm bg-white/10 px-4 py-2.5 text-sm text-slate-100">
-              Sí, porfa. ¿Cómo pago?
-            </div>
-            <div class="ml-auto max-w-[80%] rounded-2xl rounded-tr-sm bg-violet-500 px-4 py-2.5 text-sm text-white">
-              Puedes pagar por Nequi al 320 000 0000 o en el local. ¿Cuál
-              prefieres?
+            
+            <!-- Pantalla interna -->
+            <div class="flex-1 bg-slate-900 rounded-[34px] overflow-hidden flex flex-col p-4 pt-8 relative">
+              
+              <!-- Cabecera de chat -->
+              <div class="flex items-center gap-3 border-b border-white/5 pb-3 mb-3">
+                <div class="h-9 w-9 rounded-full bg-brand/10 border border-brand/20 flex items-center justify-center font-bold text-brand text-xs">IA</div>
+                <div>
+                  <div class="text-xs font-bold text-white">Agente Zentivy</div>
+                  <div class="text-[10px] text-emerald-400" id="index-agent-status">● En línea (24/7)</div>
+                </div>
+              </div>
+
+              <!-- Mensajes del chat con scroll oculto y animaciones de burbuja -->
+              <div class="flex-1 space-y-2.5 overflow-hidden pr-0.5 no-scrollbar text-xs" id="index-chat-container">
+                <div class="chat-bubble opacity-0 max-w-[85%] rounded-2xl rounded-tl-sm bg-white/10 px-3 py-2 text-[11px] text-slate-200 transition-all duration-300 transform translate-y-2">
+                  Hola, ¿tienen disco de estado sólido de 480GB?
+                </div>
+                
+                <div class="chat-bubble opacity-0 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-brand p-1 text-white shadow-md transition-all duration-300 transform translate-y-2 flex flex-col gap-1">
+                  <div class="relative w-full h-[95px] rounded-lg overflow-hidden border border-white/10 bg-[#f3f4f6]">
+                    <img src="/zentivy_ssd.png" alt="Disco Sólido Zentivy" class="w-full h-full object-contain" />
+                  </div>
+                  <span class="px-2 pb-1 block text-[11px]">¡Hola! 😊 Sí, tenemos el Disco Sólido Zentivy de 480GB por $145.000 COP. Nos quedan 8 unidades en Sede Centro. ¿Te lo aparto?</span>
+                </div>
+
+                <div class="chat-bubble opacity-0 max-w-[85%] rounded-2xl rounded-tl-sm bg-white/10 px-3 py-2 text-[11px] text-slate-200 transition-all duration-300 transform translate-y-2">
+                  Sí, me gusta. ¿Cómo pago?
+                </div>
+
+                <div class="chat-bubble opacity-0 ml-auto max-w-[85%] rounded-2xl rounded-tr-sm bg-brand px-3 py-2 text-[11px] text-white shadow-md transition-all duration-300 transform translate-y-2">
+                  ¡Excelente! He apartado 1 unidad. Puedes pagar por Nequi al 320 000 0000 o transferir a Bancolombia. Envíame el comprobante por aquí.
+                </div>
+              </div>
+
+              <div class="mt-3 border-t border-white/5 pt-3 text-[10px] text-center text-slate-500">
+                Atendido automáticamente en WhatsApp
+              </div>
             </div>
           </div>
-          <p class="mt-4 text-center text-xs text-slate-400">
-            Ejemplo de conversación atendida por el agente de Zentivy
-          </p>
         </div>
+
+    <script>
+      const initChatSimulation = () => {
+        const chatContainer = document.getElementById('index-chat-container');
+        const statusText = document.getElementById('index-agent-status');
+        if (!chatContainer || !statusText) return;
+
+        const bubbles = chatContainer.querySelectorAll('.chat-bubble');
+        let currentStep = 0;
+        let timeoutId: number;
+
+        const showMessage = () => {
+          if (currentStep >= bubbles.length) {
+            // End of conversation: wait 6 seconds and restart
+            timeoutId = setTimeout(() => {
+              bubbles.forEach(b => {
+                b.classList.add('opacity-0', 'translate-y-2');
+                b.classList.remove('opacity-100', 'translate-y-0');
+              });
+              currentStep = 0;
+              statusText.innerHTML = '● En línea (24/7)';
+              statusText.className = 'text-[10px] text-emerald-400';
+              chatContainer.scrollTop = 0;
+              showMessage();
+            }, 6000) as unknown as number;
+            return;
+          }
+
+          const currentBubble = bubbles[currentStep];
+          const isAgent = currentBubble.classList.contains('ml-auto');
+          
+          if (isAgent) {
+            // Agent is typing status
+            statusText.innerHTML = 'Escribiendo...';
+            statusText.className = 'text-[10px] text-brand-light animate-pulse font-medium';
+            
+            // Wait 1.8 seconds to show the message
+            timeoutId = setTimeout(() => {
+              statusText.innerHTML = '● En línea (24/7)';
+              statusText.className = 'text-[10px] text-emerald-400';
+              
+              currentBubble.classList.remove('opacity-0', 'translate-y-2');
+              currentBubble.classList.add('opacity-100', 'translate-y-0');
+              
+              // Scroll to bottom
+              chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+              });
+              
+              currentStep++;
+              // Wait 2.5 seconds before next message
+              timeoutId = setTimeout(showMessage, 2500) as unknown as number;
+            }, 1800) as unknown as number;
+          } else {
+            // Customer message: appears faster
+            timeoutId = setTimeout(() => {
+              currentBubble.classList.remove('opacity-0', 'translate-y-2');
+              currentBubble.classList.add('opacity-100', 'translate-y-0');
+              
+              // Scroll to bottom
+              chatContainer.scrollTo({
+                top: chatContainer.scrollHeight,
+                behavior: 'smooth'
+              });
+              
+              currentStep++;
+              // Wait 1.8 seconds before next message
+              timeoutId = setTimeout(showMessage, 1800) as unknown as number;
+            }, 1000) as unknown as number;
+          }
+        };
+
+        const startSimulation = () => {
+          bubbles.forEach(b => {
+            b.classList.add('opacity-0', 'translate-y-2');
+            b.classList.remove('opacity-100', 'translate-y-0');
+          });
+          currentStep = 0;
+          statusText.innerHTML = '● En línea (24/7)';
+          statusText.className = 'text-[10px] text-emerald-400';
+          chatContainer.scrollTop = 0;
+          showMessage();
+        };
+
+        startSimulation();
+      };
+
+      initChatSimulation();
+      document.addEventListener('astro:after-swap', initChatSimulation);
+    </script>
+
       </div>
     </section>
 
     <!-- PRECIOS -->
     <section id="precios" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-20">
-      <div class="mx-auto max-w-2xl text-center">
+      <div class="mx-auto max-w-2xl text-center reveal">
         <h2 class="text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
           Precios claros, sin sorpresas
         </h2>
@@ -287,9 +409,9 @@ const faqJsonLd = {
 
       <div class="mt-14 grid items-start gap-6 md:grid-cols-3">
         {
-          planes.map((p) => (
+          planes.map((p, i) => (
             <div
-              class={`rounded-2xl border p-7 ${p.destacado ? 'border-brand bg-white shadow-xl ring-1 ring-brand/20' : 'border-slate-100 bg-white'}`}
+              class={`rounded-2xl border p-7 reveal ${i === 1 ? 'reveal-delay-1' : i === 2 ? 'reveal-delay-2' : ''} ${p.destacado ? 'border-brand bg-white shadow-xl ring-1 ring-brand/20' : 'border-slate-100 bg-white'}`}
             >
               {p.destacado && (
                 <p class="mb-3 w-fit rounded-full bg-brand px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
@@ -332,7 +454,7 @@ const faqJsonLd = {
 
     <!-- FAQ -->
     <section id="faq" class="scroll-mt-20 bg-slate-50">
-      <div class="mx-auto max-w-3xl px-5 py-20">
+      <div class="mx-auto max-w-3xl px-5 py-20 reveal">
         <h2
           class="text-center text-3xl font-black tracking-tight text-slate-900 md:text-4xl"
         >
@@ -341,36 +463,64 @@ const faqJsonLd = {
         <div class="mt-12 space-y-4">
           {
             faqs.map((f) => (
-              <details class="group rounded-2xl border border-slate-200 bg-white p-6">
-                <summary class="flex cursor-pointer items-center justify-between text-base font-bold text-slate-900">
-                  {f.q}
-                  <span class="text-brand transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p class="mt-3 text-sm leading-relaxed text-slate-600">{f.a}</p>
-              </details>
+              <div class="faq-item group rounded-2xl border border-slate-200 bg-white p-6">
+                <button class="faq-trigger flex w-full cursor-pointer items-center justify-between text-base font-bold text-slate-900 text-left focus:outline-none">
+                  <span>{f.q}</span>
+                  <span class="faq-icon text-brand transition-transform font-bold text-xl">+</span>
+                </button>
+                <div class="faq-content">
+                  <div class="overflow-hidden">
+                    <p class="pt-3 text-sm leading-relaxed text-slate-600">{f.a}</p>
+                  </div>
+                </div>
+              </div>
             ))
           }
         </div>
       </div>
     </section>
 
+    <script>
+      const initFaqs = () => {
+        const triggers = document.querySelectorAll('.faq-trigger');
+        triggers.forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const item = trigger.closest('.faq-item');
+            if (!item) return;
+            const isActive = item.classList.contains('active');
+            
+            // Close other FAQs
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+              otherItem.classList.remove('active');
+            });
+
+            if (!isActive) {
+              item.classList.add('active');
+            }
+          });
+        });
+      };
+      
+      initFaqs();
+      document.addEventListener('astro:after-swap', initFaqs);
+    </script>
+
     <!-- CTA FINAL -->
     <section class="mx-auto max-w-6xl px-5 py-20">
       <div
-        class="rounded-3xl bg-gradient-to-br from-brand to-brand-dark px-8 py-16 text-center text-white"
+        class="rounded-3xl border border-brand/20 bg-gradient-to-br from-brand/5 via-white to-white p-8 md:p-16 text-center relative overflow-hidden shadow-lg reveal"
       >
-        <h2 class="text-3xl font-black tracking-tight md:text-4xl">
+        <div class="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-brand-light/10 blur-3xl pointer-events-none"></div>
+        <h2 class="text-3xl font-black tracking-tight md:text-4xl text-slate-900 relative z-10">
           Lleva tu negocio al siguiente nivel
         </h2>
-        <p class="mx-auto mt-4 max-w-xl text-lg text-white/80">
+        <p class="mx-auto mt-4 max-w-xl text-lg text-slate-600 relative z-10">
           Únete a los negocios colombianos que ya controlan su inventario y
           facturan con Zentivy.
         </p>
         <a
           href={SITE.appUrl}
-          class="mt-8 inline-flex rounded-xl bg-white px-8 py-3.5 text-base font-bold text-brand transition-transform hover:scale-105"
+          class="mt-8 inline-flex rounded-xl bg-brand px-8 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-brand-dark hover:-translate-y-0.5 relative z-10"
           >Crear mi cuenta gratis</a
         >
       </div>
